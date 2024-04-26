@@ -5,18 +5,23 @@
 #
 
 # @lc code=start
+from typing import List
+
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        nams = nums.sort()
+        seen = {}  # Dictionary to store numbers we've seen and their indices
         
-        for i in range(len(nums)):
-            leftOver = target - nams[i]
+        for i, num in enumerate(nums):
+            leftOver = target - num
             
-            if leftOver in nums:
-                return [i, nums.index(leftOver)]
+            # If the leftover is found in the dictionary, return its index and the current index
+            if leftOver in seen:
+                return [seen[leftOver], i]
             
-        return False
+            # Otherwise, add the current number and its index to the dictionary
+            seen[num] = i
             
+        return []
         
 # @lc code=end
 
